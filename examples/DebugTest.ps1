@@ -14,6 +14,22 @@ function Write-Item($itemCount) {
     }
 }
 
+function non-approvedverb {
+
+}
+
+function Invoke-MyCommand {
+    Write-Output "My command called!"
+}
+
+$psEditor.RegisterCommand("test.mycommand", "My test command", "Invoke-MyCommand", $null);
+
+Register-EditorExtension -Verbose `
+   -Command `
+   -Name "MyModule.MyCommand" `
+   -DisplayName "My command" `
+   -ScriptBlock { Write-Output "My command script block was executed!" }
+
 # Do-Work will be underlined in green if you haven't disable script analysis.
 # Hover over the function name below to see the PSScriptAnalyzer warning that "Do-Work"
 # doesn't use an approved verb.
